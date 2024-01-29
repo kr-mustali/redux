@@ -1,7 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
-
+import logo from "./logo.svg";
+import "./App.css";
+import store from "./store";
+import { addBug, removeBug, resolveBug } from "./actions";
 function App() {
+  store.subscribe(() => {
+    console.log("Store changed!", store.getState());
+  });
+  store.dispatch(addBug("First Bug"));
+  store.dispatch(addBug("Second Bug"));
+  store.dispatch(removeBug(1));
+  store.dispatch(resolveBug(2));
+
+  console.log(store.getState());
   return (
     <div className="App">
       <header className="App-header">
